@@ -82,22 +82,23 @@ let rows = Array.from(table.rows),
 
 const updateTable = () => {
     let searchText = searchInput.value.toLowerCase();
-    let showCount = parseInt(showSelect.value);
     let filteredRows = rows.filter(row => {
         let text = row.textContent.toLowerCase();
         return text.includes(searchText);
     });
+    let showCount = parseInt(showSelect.value);
     let startRow = currentPage * showCount;
     let endRow = startRow + showCount;
     rows.forEach(row => row.style.display = "none");
     filteredRows.slice(startRow, endRow).forEach(row => row.style.display = "");
     
-    let isSearching = searchText !== "";
-    showText.textContent = "Showing " + (startRow + 1) + " to " + Math.min(endRow, filteredRows.length) + " of " + filteredRows.length + " entries" + (isSearching ? " (filtered from " + rows.length + " total entries)" : "");
+    showText.textContent = "Showing " + (startRow + 1) + " to " 
+                        + Math.min(endRow, filteredRows.length) + " of " + filteredRows.length + " entries" 
+                        + (searchText !== "" ? " (filtered from " + rows.length + " total entries)" : "");
     let noResultRow = table.querySelector(".no-result");
     if (noResultRow) table.removeChild(noResultRow);
 
-    if (filteredRows.length === 0 && isSearching) {
+    if (filteredRows.length === 0 && searchText !== "") {
         noResultRow = table.insertRow();
         noResultRow.className = "no-result";
         let cell = noResultRow.insertCell();
@@ -161,7 +162,8 @@ updateTable();
 
 const sortTable = () => {
     rows.sort((rowA, rowB) => {
-        return rowA.cells[sortColumn].textContent.trim().localeCompare(rowB.cells[sortColumn].textContent.trim(), {numeric: true, sensitivity: "base"}) * (sortAscending ? 1 : -1);
+        return rowA.cells[sortColumn].textContent.trim().localeCompare(rowB.cells[sortColumn].textContent.trim(),
+                {numeric: true, sensitivity: "base"}) * (sortAscending ? 1 : -1);
     });
     rows.forEach(row => table.appendChild(row));
 }
