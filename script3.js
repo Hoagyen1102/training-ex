@@ -145,7 +145,7 @@ const updatePagination = (totalRows, showCount) => {
     prevBtn.style.cursor = currentPage === 0 ? "no-drop" : "pointer"; 
     if(currentPage === 0) prevBtn.style.background = "#fff";
     nextBtn.style.cursor = currentPage === totalPages - 1 ? "no-drop" : "pointer";
-    if(currentPage === 0) nextBtn.style.background = "#fff";
+    if(currentPage === totalPages - 1) nextBtn.style.background = "#fff";
 }
 
 showSelect.addEventListener("change", () => {
