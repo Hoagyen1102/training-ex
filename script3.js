@@ -159,9 +159,7 @@ updateTable();
 
 const sortTable = () => {
     rows.sort((rowA, rowB) => {
-        let cellA = rowA.cells[sortColumn].textContent.trim();
-        let cellB = rowB.cells[sortColumn].textContent.trim();
-        return cellA.localeCompare(cellB, undefined, {numeric: true, sensitivity: "base"}) * (sortAscending ? 1 : -1);
+        return rowA.cells[sortColumn].textContent.trim().localeCompare(rowB.cells[sortColumn].textContent.trim(), {numeric: true, sensitivity: "base"}) * (sortAscending ? 1 : -1);
     });
     rows.forEach(row => table.appendChild(row));
 }
@@ -175,6 +173,7 @@ headers.forEach((header, index) => {
             header.className = "fa-solid " + (i === sortColumn ? (wasAscending ? "fa-arrow-down-wide-short active" : "fa-arrow-down-short-wide active") : "fa-sort");
         });
         sortTable();
+        currentPage = 0;
         updateTable();
     });
 });
