@@ -78,7 +78,7 @@ let rows = Array.from(table.rows),
     currentPage = 0,
     headers = Array.from(document.querySelectorAll(".table th i")),
     sortColumn = 0,
-    sortAscending = false;
+    sortAscending = true;
 
 const updateTable = () => {
     let searchText = searchInput.value.toLowerCase();
@@ -167,7 +167,10 @@ const sortTable = () => {
 headers.forEach((header, index) => {
     header.addEventListener("click", () => {
         let wasAscending = sortAscending;
-        sortColumn = index;
+        if(sortColumn!=index){
+            sortColumn = index;
+            wasAscending = false;
+        }
         sortAscending = !wasAscending;
         headers.forEach((header, i) => {
             header.className = "fa-solid " + (i === sortColumn ? (wasAscending ? "fa-arrow-down-wide-short active" : "fa-arrow-down-short-wide active") : "fa-sort");
