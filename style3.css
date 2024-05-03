@@ -55,6 +55,7 @@ i.active{
     line-height: 30px;
 }
 .show:focus{
+    outline: none;
     border: 1px solid #337ab7;
 }
 .search{
