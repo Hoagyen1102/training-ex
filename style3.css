@@ -54,6 +54,9 @@ i.active{
     font-size: 12px;
     line-height: 30px;
 }
+.show:focus{
+    border: 1px solid #337ab7;
+}
 .search{
     margin-left: 5px;
     padding: 5px 10px;
@@ -61,6 +64,10 @@ i.active{
     height: 30px;
     font-size: 12px;
     line-height: 30px;
+}
+.search:focus{
+    outline: none;
+    border: 1px solid #337ab7;
 }
 table{
     width: 100%;
