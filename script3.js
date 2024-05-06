@@ -109,7 +109,6 @@ const updateTable = () => {
     updatePagination(filteredRows.length, showCount);
 }
 
-    
 const updatePagination = (totalRows, showCount) => {
     paginationDiv.innerHTML = "";
     let totalPages = Math.ceil(totalRows / showCount);
@@ -144,8 +143,13 @@ const updatePagination = (totalRows, showCount) => {
     paginationDiv.appendChild(nextBtn);
     prevBtn.style.cursor = currentPage === 0 ? "no-drop" : "pointer"; 
     if(currentPage === 0) prevBtn.style.background = "#fff";
-    nextBtn.style.cursor = currentPage === totalPages - 1 ? "no-drop" : "pointer";
-    if(currentPage === totalPages - 1) nextBtn.style.background = "#fff";
+    if(totalPages === currentPage){
+        nextBtn.style.cursor = "no-drop";
+        nextBtn.style.background = "#fff";
+    }else{
+        nextBtn.style.cursor = currentPage === totalPages - 1 ? "no-drop" : "pointer";
+        if(currentPage === totalPages - 1) nextBtn.style.background = "#fff";
+    }
 }
 
 showSelect.addEventListener("change", () => {
